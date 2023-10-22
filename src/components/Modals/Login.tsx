@@ -1,11 +1,22 @@
+import { authModalState } from '@/atoms/authModalAtom';
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 
 type LoginProps = {
     
 };
 
 const Login:React.FC<LoginProps> = () => {
-    
+    const setAuthModalState = useSetRecoilState(authModalState)
+
+    const handleForgotPassword = () => {
+        setAuthModalState(prev => ({...prev, type: 'forgotPassword'}))
+    }
+
+    const handleCreateAccount = () => {
+        setAuthModalState(prev => ({...prev, type: 'signup'}))
+    }
+
     return (
         <div className="Login flex flex-col gap-4">
             <h1 className='text-2xl font-medium'
@@ -20,11 +31,16 @@ const Login:React.FC<LoginProps> = () => {
             </form>
 
             <div className="unsubscribe-btn flex justify-end">
-                <a href="/reset-password" className="text-sm text-brand-orange">Forgot Password?</a>
+                <a href='#' className="text-sm text-brand-orange"
+                onClick={handleForgotPassword}
+                >Forgot Password?</a>
             </div>
 
             <div className="create-account text-gray-300">
-                Not Registered? <a href='#' className='text-blue-700'>Create account</a>
+                Not Registered?
+                <a href='#' className='text-blue-700'
+                onClick={handleCreateAccount}
+                > Create account</a>
             </div>
         </div>
     )

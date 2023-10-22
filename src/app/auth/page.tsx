@@ -1,12 +1,18 @@
+"use client"
+
 import React from 'react';
 import Navbar from '@/components/Navbar/Navbar'
 import AuthModal from '@/components/Modals/AuthModal'
+import { useRecoilValue } from 'recoil';
+import { authModalState } from '@/atoms/authModalAtom';
 
 type pageProps = {
     
 };
 
 const page:React.FC<pageProps> = () => {
+
+    const authModal = useRecoilValue(authModalState)
     
     return (
         <>
@@ -23,7 +29,7 @@ const page:React.FC<pageProps> = () => {
         </div>
 
         {/* Modal */}
-        <AuthModal />
+        {authModal.isOpen && <AuthModal />}
         </>
     )
 }

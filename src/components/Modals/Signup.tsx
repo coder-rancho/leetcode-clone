@@ -1,10 +1,21 @@
+import { authModalState } from '@/atoms/authModalAtom';
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 
 type SignupProps = {
     
 };
 
 const Signup:React.FC<SignupProps> = () => {
+    const setAuthModalState = useSetRecoilState(authModalState)
+
+    const handleForgotPassword = () => {
+        setAuthModalState(prev => ({...prev, type: 'forgotPassword'}))
+    }
+
+    const handleLogin = () => {
+        setAuthModalState(prev => ({...prev, type: 'login'}))
+    }
     
     return (
         <div className="Signup flex flex-col gap-4">
@@ -22,11 +33,16 @@ const Signup:React.FC<SignupProps> = () => {
             </form>
 
             <div className="unsubscribe-btn flex justify-end">
-                <a href="/reset-password" className="text-sm text-brand-orange">Forgot Password?</a>
+                <a href='#' className="text-sm text-brand-orange"
+                onClick={handleForgotPassword}
+                >Forgot Password?</a>
             </div>
 
             <div className="create-account text-gray-300">
-                Already have an account? <a href='#' className='text-blue-700'>Login</a>
+                Already have an account? 
+                <a href='#' className='text-blue-700'
+                onClick={handleLogin}
+                > Login</a>
             </div>
         </div>
     )
