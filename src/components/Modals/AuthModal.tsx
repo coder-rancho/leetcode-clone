@@ -1,6 +1,8 @@
 import React from 'react';
 import { IoClose } from 'react-icons/io5'
 import Login from './Login';
+import Signup from './Signup';
+import ResetPassword from './ResetPassword';
 
 type AuthModalProps = {
      
@@ -21,7 +23,7 @@ const AuthModal:React.FC<AuthModalProps> = () => {
                 </div>
 
                 <div className="card-content">
-                    <Login /> 
+                    <ResetPassword /> 
                 </div>
             </div>
         </div>
